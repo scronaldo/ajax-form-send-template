@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ГастроПаб Туман Брест, Ресторан Брест</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/libs.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/done.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="x-rim-auto-match" content="none">
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+
+        <div class="form-box">
+            <form id="forma">
+                <label>Хотите забронировать столик? Укажите ваш  номер телефона!</label>
+                <input type="tel" name="tel" id="user_name" placeholder="+375 12 345-67-89" required>
+                <button type="submit">Забронировать</button>
+            </form>
+        </div>
+    
+<style type="text/css">
+    .done {
+    display: none;
+    position: fixed;
+    top: calc(50% - 25px);
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: #6cb667;
+    height: 50px;
+    line-height: 50px;
+    font-weight: 700;
+}
+
+.done p {
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+}
+</style>
+    <div class="done" id="done">
+        <p>Заявка отправлена</p>
+    </div>
+
+
+    <script src="js/libs.min.js"></script>
+    <script src="js/scripts.min.js"></script>
+        <!-- // <script src="mail.js"></script> -->
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("#forma").submit(function() {
+        $.ajax({
+            type: "POST",
+            url: "mail.php",
+            data: $(this).serialize()
+        }).done(function() {
+            $(this).find("input").val("");
+            $("#done").fadeIn(1000);
+            setTimeout(function() {
+                $("#done").fadeOut(1000)
+            }, 3000);
+            $("#forma").trigger("reset");
+        });
+        return false;
+    });
+});
+
+</script>
+
+<!-- .done {
+    display: none;
+    position: fixed;
+    top: calc(50% - 25px);
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: #6cb667;
+    height: 50px;
+    line-height: 50px;
+    font-weight: 700;
+}
+
+.done p {
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+}
+ -->
+
+</body>
+
+</html><!-- zzz </body><!-->
